@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import com.auth0.jwt.interfaces.DecodedJWT;
 
 @RestController
+@CrossOrigin
 public class LoginAndRegisterController {
 
     @Autowired
@@ -76,7 +77,7 @@ public class LoginAndRegisterController {
 
     @PostMapping("/updateProfile")
     public Result<?> updateProfile(@RequestParam String token, @RequestParam String name, @RequestParam String password,
-            @RequestParam String phone) {
+                                   @RequestParam String phone) {
         DecodedJWT jwt = JwtUtil.verifyToken(token);
         String identity = jwt.getClaim("identity").asString();
         Integer id = jwt.getClaim("userId").asInt();

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/referee")
 public class RefereeController {
 
@@ -17,7 +18,7 @@ public class RefereeController {
 
     @PostMapping("/scoreUpdate")
     public Result<?> updateScore(@RequestParam Integer match_id, @RequestParam Integer index,
-            @RequestParam String score) {
+                                 @RequestParam String score) {
         if (index < 1 || index > 7) {
             return Result.error("比分编号不合法");
         }

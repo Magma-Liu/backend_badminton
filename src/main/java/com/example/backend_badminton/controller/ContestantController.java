@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/contestant")
 public class ContestantController {
 
@@ -49,7 +50,7 @@ public class ContestantController {
 
     @PostMapping("/createTeam")
     public Result<?> createTeam(@RequestParam String teamName, @RequestParam String introduction,
-            @RequestParam String token) {
+                                @RequestParam String token) {
         DecodedJWT jwt = JwtUtil.verifyToken(token);
         Integer contestant_id = jwt.getClaim("userId").asInt();
         Contestant contestant = contestantService.fetchProfile(contestant_id);
@@ -67,7 +68,7 @@ public class ContestantController {
 
     @PostMapping("/updateProfile")
     public Result<?> updateProfile(@RequestParam String token, @RequestParam String name, @RequestParam String password,
-            @RequestParam String phone) {
+                                   @RequestParam String phone) {
         DecodedJWT jwt = JwtUtil.verifyToken(token);
         Integer id = jwt.getClaim("userId").asInt();
         Contestant contestant = contestantService.fetchProfile(id);

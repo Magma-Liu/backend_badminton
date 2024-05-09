@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin
 public class ChiefRefereeController {
 
     @Autowired
@@ -26,7 +27,7 @@ public class ChiefRefereeController {
 
     @PostMapping("/chiefReferee/updateMatch")
     public Result<?> updateMatch(@RequestParam Integer match_id, @RequestParam Integer referee_id,
-            @RequestParam Integer team1_id, @RequestParam Integer team2_id) {
+                                 @RequestParam Integer team1_id, @RequestParam Integer team2_id) {
         return chiefRefereeService.updateMatch(match_id, referee_id, team1_id, team2_id) ? Result.success()
                 : Result.error("比赛信息更新失败");
     }
