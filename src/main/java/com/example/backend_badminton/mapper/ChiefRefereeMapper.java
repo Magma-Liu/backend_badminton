@@ -13,6 +13,9 @@ import java.util.List;
 @Mapper
 public interface ChiefRefereeMapper {
 
+    @Select("SELECT * FROM referee WHERE referee_id = #{id}")
+    Referee selectJudgeProfile(Integer id);
+
     @Delete("DELETE FROM `match` WHERE match_id = #{match_id}")
     int deleteMatch(Integer match_id);
 

@@ -7,7 +7,6 @@ import com.example.backend_badminton.pojo.Event;
 import com.example.backend_badminton.pojo.Match;
 import com.example.backend_badminton.pojo.MatchInfo;
 import com.example.backend_badminton.pojo.Referee;
-import com.example.backend_badminton.pojo.Team;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +17,10 @@ public class ChiefRefereeService {
 
     @Autowired
     private ChiefRefereeMapper chiefRefereeMapper;
+
+    public Referee fetchJudgeProfile(Integer id) {
+        return chiefRefereeMapper.selectJudgeProfile(id);
+    }
 
     public Boolean deleteMatch(Integer match_id) {
         return chiefRefereeMapper.deleteMatch(match_id) > 0;
@@ -145,7 +148,6 @@ public class ChiefRefereeService {
         }
         return match;
     }
-
 
     public boolean approveTeamApplication(Integer activityId, Integer teamId) {
         return chiefRefereeMapper.approveTeamApplication(activityId, teamId) > 0;

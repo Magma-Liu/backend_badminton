@@ -27,7 +27,7 @@ public class ChiefRefereeController {
 
     @PostMapping("/chiefReferee/updateMatch")
     public Result<?> updateMatch(@RequestParam Integer match_id, @RequestParam Integer referee_id,
-                                 @RequestParam Integer team1_id, @RequestParam Integer team2_id) {
+            @RequestParam Integer team1_id, @RequestParam Integer team2_id) {
         return chiefRefereeService.updateMatch(match_id, referee_id, team1_id, team2_id) ? Result.success()
                 : Result.error("比赛信息更新失败");
     }
@@ -55,7 +55,7 @@ public class ChiefRefereeController {
 
     @PostMapping("/chiefReferee/deleteJudge")
     public Result<?> deleteJudge(@RequestParam Integer id) {
-        if (chiefRefereeService.fetchProfile(id) == null) {
+        if (chiefRefereeService.fetchJudgeProfile(id) == null) {
             return Result.error("裁判不存在");
         } else {
             return chiefRefereeService.deleteReferee(id) ? Result.success() : Result.error("裁判删除失败");
@@ -64,7 +64,7 @@ public class ChiefRefereeController {
 
     @PostMapping("/chiefReferee/addJudge")
     public Result<?> addJudge(@RequestBody Referee referee) {
-        if (chiefRefereeService.fetchProfile(referee.getReferee_id()) != null) {
+        if (chiefRefereeService.fetchJudgeProfile(referee.getReferee_id()) != null) {
             return Result.error("裁判已存在");
         } else {
             return chiefRefereeService.addReferee(referee.getName(), referee.getPassword(),
@@ -74,7 +74,7 @@ public class ChiefRefereeController {
 
     @PostMapping("/chiefReferee/updateJudge")
     public Result<?> updateJudge(@RequestBody Referee referee) {
-        if (chiefRefereeService.fetchProfile(referee.getReferee_id()) == null) {
+        if (chiefRefereeService.fetchJudgeProfile(referee.getReferee_id()) == null) {
             return Result.error("裁判不存在");
         } else {
             return chiefRefereeService.updateRefereeProfile(referee.getReferee_id(), referee.getName(),

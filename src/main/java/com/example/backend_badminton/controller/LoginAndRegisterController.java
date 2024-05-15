@@ -26,6 +26,12 @@ public class LoginAndRegisterController {
     @Autowired
     private RefereeService refereeService;
 
+    @GetMapping("/getRegister")
+    public Result<?> getRegister() {
+        return Result.success(false);
+//        return Result.success(true);
+    }
+
     @PostMapping("/login")
     public Result<?> login(String phone, String password, Integer identity) {
         Integer id = null;
